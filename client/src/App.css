@@ -1,3 +1,12 @@
-.App {
-  text-align: center;
+.padding-y-24px {
+  padding: 24px 0;
+}
+
+.container__form {
+  height: 60vh;
+}
+
+.container__table {
+  height: 50vh;
+  overflow-y: auto;
 }
