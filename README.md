@@ -6,7 +6,9 @@ Este repositório consiste em uma plataforma fullstack como teste técnico para 
 ___
 ### Vídeo demonstrativo
 
-![](./video_teste_tecnico.mp4)
+<video width="320" height="240" controls>
+  <source src="./video_teste_tecnico.mp4" type="video/mp4">
+</video>
 ___
 
 ### Configuração
