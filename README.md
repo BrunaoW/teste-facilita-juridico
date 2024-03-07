@@ -52,5 +52,5 @@ ___
   npm install
   npm i -g nodemon
   cp -a .env.example .env
-  nodemon ./server/index
+  nodemon index
   ```
