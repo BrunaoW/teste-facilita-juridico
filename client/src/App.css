@@ -9,4 +9,5 @@
 .container__table {
   height: 50vh;
   overflow-y: auto;
+  margin-bottom: 12px;
 }

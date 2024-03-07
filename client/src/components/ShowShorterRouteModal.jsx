@@ -14,7 +14,7 @@ import {
   Modal,
 } from 'semantic-ui-react'
 
-export default function ShowShorterRouteModal({ openModalButton }) {
+export default function ShowShorterRouteModal({ customers, openModalButton }) {
   const [open, setOpen] = React.useState(false)
 
   return (
@@ -30,6 +30,7 @@ export default function ShowShorterRouteModal({ openModalButton }) {
           <Table basic='very' celled>
             <TableHeader>
               <TableRow>
+                <TableHeaderCell>Ordem</TableHeaderCell>
                 <TableHeaderCell>Nome</TableHeaderCell>
                 <TableHeaderCell>E-mail</TableHeaderCell>
                 <TableHeaderCell>Telefone</TableHeaderCell>
@@ -38,12 +39,17 @@ export default function ShowShorterRouteModal({ openModalButton }) {
             </TableHeader>
 
             <TableBody>
-              <TableRow>
-                <TableCell>Bruno</TableCell>
-                <TableCell>brunowilson4@gmail.com</TableCell>
-                <TableCell>31996411435</TableCell>
-                <TableCell>(10, 10)</TableCell>
-              </TableRow>
+              {
+                customers.map(customer =>
+                  <TableRow key={customer.customer_id}>
+                    <TableCell>{customer.customer_id}</TableCell>
+                    <TableCell>{customer.customer_name}</TableCell>
+                    <TableCell>{customer.email}</TableCell>
+                    <TableCell>{customer.phone}</TableCell>
+                    <TableCell>({customer.x_address}, {customer.y_address})</TableCell>
+                  </TableRow>
+                )
+              }
             </TableBody>
           </Table>
         </div>
