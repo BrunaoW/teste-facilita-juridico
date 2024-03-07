@@ -35,7 +35,6 @@ ___
   cd ./client
   npm install
   npm start
-  cd ..
   ```
   4. Rodar os seguintes comandos para instalar os pacotes npm do backend, o nodemon, e mudar o nome do arquivo de ambiente .env, que contem informações sobre o banco de dados, e enfim, rodar a aplicação em outro terminal:
   ```bash
