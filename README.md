@@ -6,9 +6,8 @@ Este repositório consiste em uma plataforma fullstack como teste técnico para 
 ___
 ### Vídeo demonstrativo
 
-<video width="320" height="240" controls>
-  <source src="./video_teste_tecnico.mp4" type="video/mp4">
-</video>
+https://github.com/BrunaoW/teste-facilita-juridico/assets/33531759/7097bca1-fd45-4fb0-b348-f66ea867ddec
+
 ___
 
 ### Configuração
