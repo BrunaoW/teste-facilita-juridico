@@ -1,3 +1,6 @@
+import React from 'react'
+
+
 import {
   Header,
   Button,
@@ -17,6 +20,24 @@ import {
 import ShowShorterRouteModal from './ShowShorterRouteModal'
 
 export default function CustomersListComponent() {
+  const [customers, setCustomersList] = React.useState([])
+
+  const getCostumers = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/customer")
+      const jsonData = await response.json()
+      setCustomersList(jsonData)
+      console.log(customers)
+      console.log(jsonData)
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
+  React.useEffect(() => {
+    getCostumers()
+  }, [])
+
   return (
     <>
       <Header as='h3'>Clientes</Header>
@@ -46,12 +67,16 @@ export default function CustomersListComponent() {
           </TableHeader>
 
           <TableBody>
-            <TableRow>
-              <TableCell>Bruno</TableCell>
-              <TableCell>brunowilson4@gmail.com</TableCell>
-              <TableCell>31996411435</TableCell>
-              <TableCell>(10, 10)</TableCell>
-            </TableRow>
+            {
+              customers.map(customer =>
+                <TableRow>
+                  <TableCell>{customer.customer_name}</TableCell>
+                  <TableCell>{customer.email}</TableCell>
+                  <TableCell>{customer.phone}</TableCell>
+                  <TableCell>({customer.x_address}, {customer.y_address})</TableCell>
+                </TableRow>
+              )
+            }
           </TableBody>
         </Table>
       </div>
