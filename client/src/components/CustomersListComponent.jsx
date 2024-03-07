@@ -19,20 +19,82 @@ import {
 import ShowShorterRouteModal from './ShowShorterRouteModal'
 
 export default function CustomersListComponent({ customers }) {
+  const [selectedFilterType, onChangeFilterType] = React.useState("name")
+  const [filteredCustomers, onChangeFilteredCustomers] =
+    React.useState([])
+
+  const filterCustomers = (textToFilter) => {
+    if (!textToFilter) {
+      onChangeFilteredCustomers(customers)
+      return
+    }
+
+    const textToFilterLowerCase = textToFilter.toLowerCase()
+    switch (selectedFilterType) {
+      case 'name':
+        onChangeFilteredCustomers(
+          customers.filter(c =>
+            c.customer_name.toLowerCase().includes(textToFilterLowerCase)
+          )
+        )
+        break
+      case 'email':
+        onChangeFilteredCustomers(
+          customers.filter(c =>
+            c.email.toLowerCase().includes(textToFilterLowerCase)
+          )
+        )
+        break
+      case 'phone':
+        onChangeFilteredCustomers(
+          customers.filter(c =>
+            c.phone.toLowerCase().includes(textToFilterLowerCase)
+          )
+        )
+        break
+    }
+  }
+
+  React.useEffect(() => {
+    onChangeFilteredCustomers(customers)
+  }, [])
+
   return (
     <>
       <Header as='h3'>Clientes</Header>
       <Form widths='equal'>
-        <FormInput label='Filtrar' icon='search' />
+        <FormInput
+          label='Filtrar'
+          icon='search'
+          onKeyUp={(e) => filterCustomers(e.target.value)}
+        />
         <FormGroup>
           <FormField fluid widths='equal'>
-            <Radio label='Nome' name='radioGroup' defaultChecked />
+            <Radio
+              label='Nome'
+              name='radioGroup'
+              value="name"
+              checked={selectedFilterType === 'name'}
+              onChange={(_, e) => onChangeFilterType(e.value)}
+            />
           </FormField>
           <FormField fluid widths='equal'>
-            <Radio label='E-mail' name='radioGroup' />
+            <Radio
+              label='E-mail'
+              name='radioGroup'
+              value="email"
+              checked={selectedFilterType === 'email'}
+              onChange={(_, e) => onChangeFilterType(e.value)}
+            />
           </FormField>
           <FormField fluid widths='equal'>
-            <Radio label='Telefone' name='radioGroup' />
+            <Radio
+              label='Telefone'
+              name='radioGroup'
+              value="phone"
+              checked={selectedFilterType === 'phone'}
+              onChange={(_, e) => onChangeFilterType(e.value)}
+            />
           </FormField>
         </FormGroup>
       </Form>
@@ -49,7 +111,9 @@ export default function CustomersListComponent({ customers }) {
 
           <TableBody>
             {
-              customers.map(customer =>
+              (
+                filteredCustomers.length > 0 ? filteredCustomers : customers
+              ).map(customer =>
                 <TableRow key={customer.customer_id}>
                   <TableCell>{customer.customer_name}</TableCell>
                   <TableCell>{customer.email}</TableCell>

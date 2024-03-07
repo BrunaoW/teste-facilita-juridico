@@ -123,7 +123,7 @@ export default function CreateCustomerComponent({ reloadCustomerList }) {
         {
           creationHasSuccess &&
           <Message
-            success
+            success={creationHasSuccess}
             header='Sucesso'
             content="Cliente cadastrado com sucesso"
           />
@@ -131,7 +131,7 @@ export default function CreateCustomerComponent({ reloadCustomerList }) {
         {
           creationHasFailed &&
           <Message
-            error
+            error={creationHasFailed}
             header='Erro'
             content='Ocorreu um erro ao cadastrar cliente'
           />
