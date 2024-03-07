@@ -89,12 +89,10 @@ function orderCustomersByShortestRoute(customers) {
   result.path.pop()
   result.path.shift()
 
-  customers.sort((c1, c2) => {
-    return result.path.indexOf(c1.customer_id) -
-      result.path.indexOf(c2.customer_id)
-  })
+  orderedCustomers =
+    result.path.map(node => customers.find(c => c.customer_id == node))
 
-  return { customers, totalDistance }
+  return { customers: orderedCustomers, totalDistance }
 }
 
 function findShortestPath(graph) {
@@ -140,6 +138,6 @@ function findShortestPath(graph) {
 
 function calcDistance(A, B) {
   return Math.sqrt(
-    (B.x_address - A.x_address) ** 2) + ((B.y_address - A.y_address) ** 2
-    )
+    ((B.x_address - A.x_address) ** 2) + ((B.y_address - A.y_address) ** 2)
+  )
 }

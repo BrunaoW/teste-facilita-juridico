@@ -128,7 +128,7 @@ export default function CustomersListComponent({ customers }) {
       <ShowShorterRouteModal
         customers={customers}
         openModalButton={
-          <Button fluid>
+          <Button disabled={!customers.length} fluid>
             Obter menor caminho de entrega
           </Button>
         }

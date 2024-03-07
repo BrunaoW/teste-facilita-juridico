@@ -60,25 +60,20 @@ export default function CreateCustomerComponent({ reloadCustomerList }) {
       <div className='container__form'>
         <Form
           onSubmit={createCustomer}
-          error={
-            name &&
-            email &&
-            phone &&
-            x_address &&
-            y_address
-          }
         >
           <FormGroup widths='equal'>
             <FormInput
               required
               fluid
               label='Nome'
+              value={name}
               onChange={(e) => changeName(e.target.value)}
             />
             <FormInput
               required
               fluid
               label='E-mail'
+              value={email}
               onChange={(e) => changeEmail(e.target.value)}
             />
           </FormGroup>
@@ -86,6 +81,7 @@ export default function CreateCustomerComponent({ reloadCustomerList }) {
             <FormInput
               required
               fluid
+              value={phone}
               onKeyPress={(event) => {
                 if (!/[0-9]/.test(event.key)) {
                   event.preventDefault();
@@ -97,6 +93,7 @@ export default function CreateCustomerComponent({ reloadCustomerList }) {
             <FormInput
               required
               fluid
+              value={x_address}
               onKeyPress={(event) => {
                 if (!/[0-9]/.test(event.key)) {
                   event.preventDefault();
@@ -108,8 +105,9 @@ export default function CreateCustomerComponent({ reloadCustomerList }) {
             <FormInput
               required
               fluid
+              value={y_address}
               onKeyPress={(event) => {
-                if (!/[0-9]/.test(event.key)) {
+                if (!/^-?\d+$/.test(event.key)) {
                   event.preventDefault();
                 }
               }}
@@ -117,8 +115,16 @@ export default function CreateCustomerComponent({ reloadCustomerList }) {
               onChange={(e) => changeYAddress(e.target.value)}
             />
           </FormGroup>
-
-          <FormButton fluid>Cadastrar</FormButton>
+          <FormButton
+            disabled={
+              !(name.length &&
+                email.length &&
+                phone.length &&
+                x_address.length &&
+                y_address.length)
+            }
+            fluid
+          >Cadastrar</FormButton>
         </Form>
         {
           creationHasSuccess &&
