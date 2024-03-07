@@ -4,6 +4,10 @@
 Este repositório consiste em uma plataforma fullstack como teste técnico para a empresa Facilita Jurídico, implementado utilizando NodeJS, React e PostgreSQL.
 
 ___
+### Vídeo demonstrativo
+
+![](video_teste_tecnico.mp4)
+___
 
 ### Configuração
 
