@@ -12,11 +12,16 @@ ___
 
 ### Configuração
 
+- Versões:
+```
+  PostgreSQL: 14.11 (Ubuntu 14.11-0ubuntu0.22.04.1)
+  NodeJS: v16.14.2
+  npm: 8.5.0
+```
 - Para configurar e executar o projeto em sua máquina, é necessário seguir os seguintes passos após o clone no repositório:
   1. Entrar no prompt do PostgreSQL pelo terminal, e em seguida, criar o banco de dados no PostgreSQL localmente pelo seguinte arquivo DDL abaixo, e conectar no banco criado:
   ```bash
-  sudo -i -u postgresql
-  psql
+  sudo -u postgres psql
   ```
   ```sql
     CREATE DATABASE acompanhalimpeza;
